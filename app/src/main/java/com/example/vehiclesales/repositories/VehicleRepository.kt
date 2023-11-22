@@ -3,7 +3,7 @@ package com.example.vehiclesales.repositories
 import androidx.lifecycle.LiveData
 import com.example.vehiclesales.model.SaleDetails
 import com.example.vehiclesales.model.Vehicle
-import com.example.vehiclesales.model.VehicleDao
+import com.example.vehiclesales.room.VehicleDao
 
 class VehicleRepository (private val vehicleDao: VehicleDao) {
 

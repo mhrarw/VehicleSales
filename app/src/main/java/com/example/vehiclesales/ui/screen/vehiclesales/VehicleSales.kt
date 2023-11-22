@@ -1,4 +1,4 @@
-package com.example.vehiclesales.ui.screen
+package com.example.vehiclesales.ui.screen.vehiclesales
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -7,7 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.vehiclesales.ui.theme.VehicleSalesTheme
 
 @Composable
-fun HomeScreen(name: String, modifier: Modifier = Modifier) {
+fun VehicleSalesScreen(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "ini $name!",
         modifier = modifier
@@ -16,8 +16,8 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenReview() {
+fun VehicleSalesScreenReview() {
     VehicleSalesTheme {
-        HomeScreen("HomeScreen")
+        VehicleSalesScreen("Vehicle Sales")
     }
 }

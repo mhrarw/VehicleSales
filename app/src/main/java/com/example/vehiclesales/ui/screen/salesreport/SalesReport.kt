@@ -1,4 +1,4 @@
-package com.example.vehiclesales.ui.screen
+package com.example.vehiclesales.ui.screen.salesreport
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

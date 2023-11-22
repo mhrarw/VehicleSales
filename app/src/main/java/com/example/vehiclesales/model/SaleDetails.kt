@@ -9,7 +9,6 @@ data class SaleDetails(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val vehicleId: Long, //vehicle sold
-    val saleDate: Date,
     val buyerName: String,
     val buyerAddress: String,
     val buyerPhoneNumber: String,

@@ -1,17 +1,11 @@
-package com.example.vehiclesales
+package com.example.vehiclesales.ui.screen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,32 +13,23 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.example.vehiclesales.ui.navigation.Screen
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.vehiclesales.ui.navigation.NavigationItem
-import com.example.vehiclesales.ui.screen.HomeScreen
-import com.example.vehiclesales.ui.screen.SalesReportScreen
-import com.example.vehiclesales.ui.screen.VehicleSalesScreen
+import com.example.vehiclesales.ui.screen.home.HomeScreen
+import com.example.vehiclesales.ui.screen.salesreport.SalesReportScreen
+import com.example.vehiclesales.ui.screen.vehiclesales.VehicleSalesScreen
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 
 @Composable
-fun VehicleSalesApp() {
+fun VehicleSalesApp(viewModel: VehicleViewModel) {
     val navController = rememberNavController()
 
     Surface(
@@ -62,7 +47,7 @@ fun VehicleSalesApp() {
                 modifier = Modifier.padding(innerPadding)
             ) {
                 composable(Screen.Home.route) {
-                    HomeScreen("Home", Modifier.fillMaxSize())
+                    HomeScreen(viewModel = viewModel, Modifier.fillMaxSize())
                 }
                 composable(Screen.VehicleSales.route) {
                     VehicleSalesScreen("Vehicle Sales", Modifier.fillMaxSize())
@@ -122,9 +107,10 @@ private fun BottomBar(
     }
 }
 
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun PreviewVehicleSalesApp() {
     VehicleSalesApp()
 }
+ */
