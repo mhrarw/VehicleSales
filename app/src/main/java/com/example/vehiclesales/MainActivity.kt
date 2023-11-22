@@ -12,7 +12,9 @@ import com.example.vehiclesales.room.VehicleDatabase
 import com.example.vehiclesales.ui.screen.VehicleSalesApp
 import com.example.vehiclesales.ui.theme.VehicleSalesTheme
 import com.example.vehiclesales.ui.screen.VehicleViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val database = VehicleDatabase.getDatabase(applicationContext)
-                    val vehicleDao = database.vehicleDao()
-                    val vehicleRepository = VehicleRepository(vehicleDao)
-                    val viewModel = VehicleViewModel(vehicleRepository)
-                    VehicleSalesApp (viewModel = viewModel)
+                    VehicleSalesApp ()
                 }
             }
         }

@@ -6,9 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.vehiclesales.model.SaleDetails
 import com.example.vehiclesales.model.Vehicle
 import com.example.vehiclesales.repositories.VehicleRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class VehicleViewModel(private val repository: VehicleRepository):ViewModel() {
+@HiltViewModel
+class VehicleViewModel @Inject constructor(
+    private val repository: VehicleRepository) :ViewModel() {
 
     val allVehicles: LiveData<List<Vehicle>> = repository.allVehicles
     //lihat stok kendaraan

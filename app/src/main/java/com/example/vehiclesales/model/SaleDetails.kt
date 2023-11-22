@@ -8,7 +8,7 @@ import java.util.Date
 data class SaleDetails(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val vehicleId: Long, //vehicle sold
+    val vehicleId: Long, // id kendaraan yang dijual
     val buyerName: String,
     val buyerAddress: String,
     val buyerPhoneNumber: String,
@@ -17,5 +17,5 @@ data class SaleDetails(
     val discountAmount: Double,
     val additionalFees: Double,
     val notes: String?,
-    val vehicleType: String  //store the type of vehicle (Motor/Mobil)
+    val vehicleType: String  // (Motor/Mobil)
 )

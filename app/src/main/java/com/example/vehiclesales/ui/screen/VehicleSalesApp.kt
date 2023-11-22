@@ -27,9 +27,10 @@ import com.example.vehiclesales.ui.screen.salesreport.SalesReportScreen
 import com.example.vehiclesales.ui.screen.vehiclesales.VehicleSalesScreen
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun VehicleSalesApp(viewModel: VehicleViewModel) {
+fun VehicleSalesApp(viewModel: VehicleViewModel = hiltViewModel()) {
     val navController = rememberNavController()
 
     Surface(
