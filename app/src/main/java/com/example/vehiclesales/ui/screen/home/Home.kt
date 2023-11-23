@@ -38,7 +38,7 @@ fun HomeScreen(navController: NavHostController, viewModel: VehicleViewModel = h
                 Column(modifier = Modifier.padding(10.dp)) {
                     androidx.compose.material.Text(text = "Year: " + checkIn.year.toString())
                     androidx.compose.material.Text(text = "Color: " +checkIn.color)
-                    androidx.compose.material.Text(text = "Price: " +checkIn.price.toString())
+                    androidx.compose.material.Text(text = "Price: Rp." +checkIn.price.toString())
                 }
             }
         }

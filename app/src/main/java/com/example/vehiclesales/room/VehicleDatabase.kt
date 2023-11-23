@@ -6,10 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.vehiclesales.model.Mobil
 import com.example.vehiclesales.model.Motor
-import com.example.vehiclesales.model.SaleDetails
 import com.example.vehiclesales.model.Vehicle
 
-@Database(entities = [Vehicle::class, Mobil::class, Motor::class, SaleDetails::class], version = 1, exportSchema = false)
+@Database(entities = [Vehicle::class, Mobil::class, Motor::class], version = 2, exportSchema = false)
 abstract class VehicleDatabase : RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
 

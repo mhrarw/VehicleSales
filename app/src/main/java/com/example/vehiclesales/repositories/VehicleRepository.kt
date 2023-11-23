@@ -1,7 +1,5 @@
 package com.example.vehiclesales.repositories
 
-import androidx.lifecycle.LiveData
-import com.example.vehiclesales.model.SaleDetails
 import com.example.vehiclesales.model.Vehicle
 import com.example.vehiclesales.room.VehicleDao
 import kotlinx.coroutines.Dispatchers

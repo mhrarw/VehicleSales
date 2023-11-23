@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 open class Vehicle(
     @PrimaryKey(autoGenerate = true)
     open val id: Long = 0,
-    open val year: Long,
+    open val year: Int,
     open val color: String,
-    open val price: Double
+    open val price: Long
 )

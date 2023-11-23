@@ -10,6 +10,7 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,9 +25,9 @@ import com.example.vehiclesales.ui.screen.VehicleViewModel
 @Composable
 fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewModel = hiltViewModel()) {
 
-    val year = remember { mutableLongStateOf(0) }
+    val year = remember { mutableIntStateOf(0) }
     val color = remember { mutableStateOf("") }
-    val price = remember { mutableDoubleStateOf(0.0) }
+    val price = remember { mutableLongStateOf(0) }
 
     LazyColumn(modifier = Modifier.padding(10.dp)) {
         item {
@@ -42,7 +43,7 @@ fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewM
                 ) {
                     OutlinedTextField(value = year.value.toString(), onValueChange = {
                         try {
-                            year.value = it.toLong()
+                            year.value = it.toInt()
                         } catch (e: NumberFormatException) {
                             println("Invalid input for year: $it")
                         }
@@ -63,7 +64,7 @@ fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewM
 
                     OutlinedTextField(value = price.value.toString(), onValueChange = {
                         try {
-                            price.value = it.toDouble()
+                            price.value = it.toLong()
                         } catch (e: NumberFormatException) {
                             println("Invalid input for price: $it")
                         }
@@ -72,7 +73,9 @@ fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewM
                             Text(
                                 text = "Price"
                             )
-                        }
+                        },
+
+
                     )
 
                     Button(onClick = {

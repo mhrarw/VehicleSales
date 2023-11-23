@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey
 data class Motor(
     @PrimaryKey(autoGenerate = true)
     override val id: Long = 0,
-    override val year: Long,
+    override val year: Int,
     override val color: String,
-    override val price: Double,
+    override val price: Long,
     val engine: String,
     val suspensionType: String,
     val transmissionType: String

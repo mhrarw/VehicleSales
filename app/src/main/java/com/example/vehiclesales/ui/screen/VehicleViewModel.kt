@@ -1,9 +1,7 @@
 package com.example.vehiclesales.ui.screen
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vehiclesales.model.SaleDetails
 import com.example.vehiclesales.model.Vehicle
 import com.example.vehiclesales.repositories.VehicleRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
