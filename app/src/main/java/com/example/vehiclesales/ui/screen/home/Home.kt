@@ -11,12 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.vehiclesales.ui.screen.VehicleViewModel
-import com.example.vehiclesales.ui.theme.VehicleSalesTheme
 
 @Composable
 fun HomeScreen(navController: NavHostController, viewModel: VehicleViewModel = hiltViewModel()) {
@@ -36,6 +34,7 @@ fun HomeScreen(navController: NavHostController, viewModel: VehicleViewModel = h
                 elevation = 8.dp,
             ) {
                 Column(modifier = Modifier.padding(10.dp)) {
+                    androidx.compose.material.Text(text = "Vehicle Type: " +checkIn.vehicleType)
                     androidx.compose.material.Text(text = "Year: " + checkIn.year.toString())
                     androidx.compose.material.Text(text = "Color: " +checkIn.color)
                     androidx.compose.material.Text(text = "Price: Rp." +checkIn.price.toString())

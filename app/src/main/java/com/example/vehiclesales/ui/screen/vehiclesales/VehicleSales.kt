@@ -9,7 +9,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -22,12 +21,21 @@ import androidx.navigation.NavHostController
 import com.example.vehiclesales.model.Vehicle
 import com.example.vehiclesales.ui.screen.VehicleViewModel
 
+enum class VehicleType {
+    MOTOR, MOBIL
+}
 @Composable
 fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewModel = hiltViewModel()) {
 
+    val vehicleType = remember { mutableStateOf("") }
     val year = remember { mutableIntStateOf(0) }
     val color = remember { mutableStateOf("") }
     val price = remember { mutableLongStateOf(0) }
+    val engine = remember { mutableStateOf("") }
+    val suspensionType = remember { mutableStateOf("") }
+    val transmissionType = remember { mutableStateOf("") }
+    val passengerCapacity = remember { mutableIntStateOf(0) }
+    val type = remember { mutableStateOf("") }
 
     LazyColumn(modifier = Modifier.padding(10.dp)) {
         item {
@@ -41,26 +49,19 @@ fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewM
                     modifier = Modifier.padding(10.dp).fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    OutlinedTextField(value = vehicleType.value, onValueChange = { vehicleType.value = it },
+                        label = { Text(text = "Vehicle Type") })
+
                     OutlinedTextField(value = year.value.toString(), onValueChange = {
                         try {
                             year.value = it.toInt()
                         } catch (e: NumberFormatException) {
                             println("Invalid input for year: $it")
                         }
-                    },
-                        label = {
-                            Text(
-                                text = "Year"
-                            )
-                        }
-                    )
+                    }, label = {Text(text = "Year") })
 
                     OutlinedTextField(value = color.value, onValueChange = { color.value = it },
-                        label = {
-                            Text(
-                                text = "Color"
-                            )
-                        })
+                        label = { Text(text = "Color") })
 
                     OutlinedTextField(value = price.value.toString(), onValueChange = {
                         try {
@@ -68,19 +69,11 @@ fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewM
                         } catch (e: NumberFormatException) {
                             println("Invalid input for price: $it")
                         }
-                    },
-                        label = {
-                            Text(
-                                text = "Price"
-                            )
-                        },
-
-
-                    )
+                    }, label = { Text(text = "Price") })
 
                     Button(onClick = {
                         viewModel.insertVehicle(
-                            Vehicle(year = year.value, color = color.value, price = price.value)
+                            Vehicle(vehicleType= vehicleType.value ,year = year.value, color = color.value, price = price.value)
                         )
                         navController.navigate("home")
                     }) {
@@ -92,13 +85,3 @@ fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewM
         }
     }
 }
-
-/*
-@Preview(showBackground = true)
-@Composable
-fun VehicleSalesScreenReview() {
-    VehicleSalesTheme {
-        VehicleSalesScreen()
-    }
-}
- */

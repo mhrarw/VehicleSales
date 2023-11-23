@@ -7,10 +7,11 @@ import androidx.room.PrimaryKey
 data class Mobil(
     @PrimaryKey(autoGenerate = true)
     override val id: Long = 0,
+    override val vehicleType: String,
     override val year: Int,
     override val color: String,
     override val price: Long,
-    val engine: String,
+    val engineMobil: String,
     val passengerCapacity: Int,
     val type: String
-) : Vehicle(id, year, color, price)
+) : Vehicle(id, vehicleType, year, color, price)
