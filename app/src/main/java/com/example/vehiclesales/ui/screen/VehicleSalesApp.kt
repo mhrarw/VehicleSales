@@ -30,7 +30,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun VehicleSalesApp(viewModel: VehicleViewModel = hiltViewModel()) {
+fun VehicleSalesApp() {
     val navController = rememberNavController()
 
     Surface(
@@ -48,10 +48,10 @@ fun VehicleSalesApp(viewModel: VehicleViewModel = hiltViewModel()) {
                 modifier = Modifier.padding(innerPadding)
             ) {
                 composable(Screen.Home.route) {
-                    HomeScreen(viewModel = viewModel, Modifier.fillMaxSize())
+                    HomeScreen(navController = navController)
                 }
                 composable(Screen.VehicleSales.route) {
-                    VehicleSalesScreen("Vehicle Sales", Modifier.fillMaxSize())
+                    VehicleSalesScreen(navController = navController)
                 }
                 composable(Screen.SalesReport.route) {
                     SalesReportScreen("Sales Report", Modifier.fillMaxSize())

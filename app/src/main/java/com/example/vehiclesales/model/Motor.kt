@@ -3,11 +3,11 @@ package com.example.vehiclesales.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity (tableName = "Motor")
 data class Motor(
     @PrimaryKey(autoGenerate = true)
     override val id: Long = 0,
-    override val year: Int,
+    override val year: Long,
     override val color: String,
     override val price: Double,
     val engine: String,

@@ -5,67 +5,47 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.vehiclesales.model.Vehicle
+import androidx.navigation.NavHostController
 import com.example.vehiclesales.ui.screen.VehicleViewModel
 import com.example.vehiclesales.ui.theme.VehicleSalesTheme
-import dagger.hilt.android.lifecycle.HiltViewModel
-import java.text.NumberFormat
-import java.util.Locale
 
 @Composable
-fun HomeScreen(viewModel: VehicleViewModel = hiltViewModel(),modifier: Modifier = Modifier) {
+fun HomeScreen(navController: NavHostController, viewModel: VehicleViewModel = hiltViewModel()) {
+    val vehicles = viewModel.vehicles.collectAsState(initial = emptyList())
 
-    Surface(
-        modifier = modifier
-    ) {
-        LazyColumn {
-            val vehicles = viewModel.allVehicles.value ?: emptyList()
-
-            item {
-                Text(
-                    text = "Vehicle Stock",
-                    style = MaterialTheme.typography.h5,
-                    modifier = Modifier.padding(14.dp)
-                )
-            }
-
-            items(vehicles) { vehicle ->
-                VehicleItem(vehicle = vehicle)
+    LazyColumn(modifier = Modifier.padding(10.dp)) {
+        item {
+            Text(
+                text = "Vehicle Stock",
+                style = MaterialTheme.typography.h6,
+                modifier = Modifier.padding(12.dp)
+            )
+        }
+        items(vehicles.value.reversed()) { checkIn ->
+            Card(
+                modifier = Modifier.padding(10.dp).fillMaxWidth(),
+                elevation = 8.dp,
+            ) {
+                Column(modifier = Modifier.padding(10.dp)) {
+                    androidx.compose.material.Text(text = "Year: " + checkIn.year.toString())
+                    androidx.compose.material.Text(text = "Color: " +checkIn.color)
+                    androidx.compose.material.Text(text = "Price: " +checkIn.price.toString())
+                }
             }
         }
     }
 }
 
-@Composable
-fun VehicleItem(vehicle: Vehicle) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp)
-    ) {
-        Text(
-            text = "Tahun: ${vehicle.year}",
-            style = MaterialTheme.typography.h6
-        )
-        Text(
-            text = "Warna: ${vehicle.color}",
-            style = MaterialTheme.typography.body1
-        )
-        Text(
-            text = "Harga: ${vehicle.price}",
-            style = MaterialTheme.typography.body1
-        )
-    }
-}
+/*
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
@@ -73,14 +53,6 @@ fun HomeScreenPreview() {
         HomeScreen()
     }
 }
+ */
 
-@Preview(showBackground = true)
-@Composable
-fun VehicleItemPreview() {
-    VehicleSalesTheme {
-        VehicleItem(
-            vehicle = Vehicle(id = 1, year = 2022, color = "Red", price = 25000.0)
-        )
-    }
-}
 
