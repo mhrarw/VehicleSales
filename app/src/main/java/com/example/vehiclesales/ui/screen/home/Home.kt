@@ -1,5 +1,6 @@
 package com.example.vehiclesales.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,8 +31,14 @@ fun HomeScreen(navController: NavHostController, viewModel: VehicleViewModel = h
         }
         items(vehicles.value.reversed()) { checkIn ->
             Card(
-                modifier = Modifier.padding(10.dp).fillMaxWidth(),
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
+                    .clickable{
+                        navController.navigate("detail_stock")
+                    },
                 elevation = 8.dp,
+
             ) {
                 Column(modifier = Modifier.padding(10.dp)) {
                     androidx.compose.material.Text(text = "Vehicle Type: " +checkIn.vehicleType)

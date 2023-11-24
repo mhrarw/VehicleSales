@@ -28,6 +28,7 @@ import com.example.vehiclesales.ui.screen.vehiclesales.VehicleSalesScreen
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.vehiclesales.ui.screen.detailstock.DetailStockScreen
 
 @Composable
 fun VehicleSalesApp() {
@@ -55,6 +56,9 @@ fun VehicleSalesApp() {
                 }
                 composable(Screen.SalesReport.route) {
                     SalesReportScreen("Sales Report", Modifier.fillMaxSize())
+                }
+                composable(Screen.DetailStock.route) {
+                    DetailStockScreen(navController = navController)
                 }
             }
         }
@@ -90,6 +94,7 @@ private fun BottomBar(
                         Screen.Home -> Icon(imageVector = Icons.Default.Home, contentDescription = null)
                         Screen.VehicleSales -> Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = null)
                         Screen.SalesReport -> Icon(imageVector = Icons.Default.Notifications, contentDescription = null)
+                        else -> {}
                     }
                 },
                 label = { Text(item.title) },

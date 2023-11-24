@@ -14,5 +14,4 @@ interface VehicleDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertVehicle(vehicle: Vehicle)
 
-
 }
