@@ -1,5 +1,7 @@
 package com.example.vehiclesales.ui.screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -30,6 +32,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.vehiclesales.ui.screen.detailstock.DetailStockScreen
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun VehicleSalesApp() {
     val navController = rememberNavController()
