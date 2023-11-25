@@ -57,8 +57,9 @@ fun VehicleSalesApp() {
                 composable(Screen.SalesReport.route) {
                     SalesReportScreen("Sales Report", Modifier.fillMaxSize())
                 }
-                composable(Screen.DetailStock.route) {
-                    DetailStockScreen(navController = navController)
+                composable(Screen.DetailStock.route + "/{vehicleId}") { backStackEntry ->
+                    val vehicleId = backStackEntry.arguments?.getString("vehicleId")?.toLongOrNull()
+                    DetailStockScreen(navController = navController, vehicleId = vehicleId ?: 0L)
                 }
             }
         }

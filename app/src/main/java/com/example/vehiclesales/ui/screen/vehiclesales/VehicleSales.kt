@@ -36,6 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.vehiclesales.model.Mobil
+import com.example.vehiclesales.model.Motor
 import com.example.vehiclesales.model.Vehicle
 import com.example.vehiclesales.ui.screen.VehicleViewModel
 
@@ -57,8 +59,7 @@ fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewM
     var showErrorSnackbar by remember { mutableStateOf(false) }
 
     fun isDataValid(): Boolean {
-        return vehicleType.value.isNotEmpty() && year.value > 0 && color.value.isNotEmpty() && price.value > 0
-    }
+        return vehicleType.value.isNotEmpty() && year.value > 0 && color.value.isNotEmpty() && price.value > 0 }
 
     LazyColumn(modifier = Modifier.padding(10.dp)) {
         item {
@@ -149,12 +150,87 @@ fun VehicleSalesScreen(navController: NavHostController, viewModel: VehicleViewM
                         modifier = Modifier
                             .fillMaxWidth())
 
+                    // Form Motor
+                    if (vehicleType.value == "Motor") {
+                        OutlinedTextField(
+                            value = engineMotor.value,
+                            onValueChange = { engineMotor.value = it },
+                            label = { Text(text = "Engine") },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        OutlinedTextField(
+                            value = suspensionType.value,
+                            onValueChange = { suspensionType.value = it },
+                            label = { Text(text = "Suspension Type") },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        OutlinedTextField(
+                            value = transmissionType.value,
+                            onValueChange = { transmissionType.value = it },
+                            label = { Text(text = "Transmission Type") },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+
+                    // Form Mobil
+                    if (vehicleType.value == "Mobil") {
+                        OutlinedTextField(
+                            value = engineMobil.value,
+                            onValueChange = { engineMobil.value = it },
+                            label = { Text(text = "Engine") },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        OutlinedTextField(
+                            value = passengerCapacity.value.toString(),
+                            onValueChange = {
+                                try {
+                                    passengerCapacity.value = it.toInt()
+                                } catch (e: NumberFormatException) {
+                                    println("Invalid input for passenger capacity: $it")
+                                }
+                            },
+                            label = { Text(text = "Passenger Capacity") },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        OutlinedTextField(
+                            value = type.value,
+                            onValueChange = { type.value = it },
+                            label = { Text(text = "Type") },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+
                     //add vehicle
                     Button(
                         onClick = {
                             if (isDataValid()) {
                                 viewModel.insertVehicle(
-                                    Vehicle(vehicleType = vehicleType.value, year = year.value, color = color.value, price = price.value)
+                                    when (vehicleType.value) {
+                                        "Motor" -> Motor(
+                                            vehicleType = vehicleType.value,
+                                            year = year.value,
+                                            color = color.value,
+                                            price = price.value,
+                                            engineMotor = engineMotor.value,
+                                            suspensionType = suspensionType.value,
+                                            transmissionType = transmissionType.value
+                                        )
+                                        "Mobil" -> Mobil(
+                                            vehicleType = vehicleType.value,
+                                            year = year.value,
+                                            color = color.value,
+                                            price = price.value,
+                                            engineMobil = engineMobil.value,
+                                            passengerCapacity = passengerCapacity.value,
+                                            type = type.value
+                                        )
+                                        else -> Vehicle(
+                                            vehicleType = vehicleType.value,
+                                            year = year.value,
+                                            color = color.value,
+                                            price = price.value
+                                        )
+                                    }
                                 )
                                 navController.navigate("home")
                             } else {

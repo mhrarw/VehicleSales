@@ -1,9 +1,11 @@
 package com.example.vehiclesales.ui.screen.detailstock
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,33 +20,37 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.vehiclesales.model.Mobil
+import com.example.vehiclesales.model.Motor
+import com.example.vehiclesales.model.Vehicle
+import com.example.vehiclesales.ui.screen.VehicleViewModel
 
 @Composable
-fun DetailStockScreen(navController: NavHostController
+fun DetailStockScreen(
+    navController: NavHostController,
+    vehicleId: Long,
+    viewModel: VehicleViewModel = hiltViewModel()
 ) {
-    Row(
+    Column(
         modifier = Modifier
-            .padding(12.dp)
-            .fillMaxWidth()
-            .height(IntrinsicSize.Max)
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        IconButton(
-            onClick = { navController.navigateUp() },
+        Row(
             modifier = Modifier
-                .align(Alignment.CenterVertically)
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Back"
-            )
+            IconButton(onClick = { navController.navigateUp() }) {
+                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+            }
+            Text(text = "Detail Stock", style = MaterialTheme.typography.h6)
+            Spacer(modifier = Modifier.width(48.dp))
         }
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = "Detail Stock",
-            style = MaterialTheme.typography.h6,
-            modifier = Modifier.align(Alignment.CenterVertically)
 
-        )
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
