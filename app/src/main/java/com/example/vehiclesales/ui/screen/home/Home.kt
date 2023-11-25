@@ -42,7 +42,7 @@ fun HomeScreen(navController: NavHostController, viewModel: VehicleViewModel = h
 }
 
 @Composable
-fun VehicleCard(navController: NavHostController, checkIn: Vehicle) {
+fun VehicleCard(navController: NavHostController, checkIn: Vehicle, viewModel: VehicleViewModel = hiltViewModel()) {
     Card(
         modifier = Modifier
             .padding(10.dp)
@@ -55,7 +55,7 @@ fun VehicleCard(navController: NavHostController, checkIn: Vehicle) {
             Text(text = "Color: ${checkIn.color}")
             Text(text = "Price: Rp. ${checkIn.price}")
 
-            // Add more details based on the type of the vehicle
+
             when (checkIn) {
                 is Motor -> {
                     Text(text = "Engine: ${checkIn.engineMotor}")
@@ -70,7 +70,8 @@ fun VehicleCard(navController: NavHostController, checkIn: Vehicle) {
             }
             Button(
                 onClick = {
-
+                    viewModel.deleteVehicle(checkIn)
+                    navController.navigate("sales_report")
                 },
                 modifier = Modifier
                     .fillMaxWidth()

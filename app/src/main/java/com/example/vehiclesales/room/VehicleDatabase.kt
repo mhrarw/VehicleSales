@@ -8,9 +8,10 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.vehiclesales.model.Mobil
 import com.example.vehiclesales.model.Motor
+import com.example.vehiclesales.model.DeletionHistory
 import com.example.vehiclesales.model.Vehicle
 
-@Database(entities = [Vehicle::class, Mobil::class, Motor::class], version = 2, exportSchema = false)
+@Database(entities = [Vehicle::class, Mobil::class, Motor::class, DeletionHistory::class], version = 2, exportSchema = false)
 abstract class VehicleDatabase : RoomDatabase() {
     abstract fun vehicleDao(): VehicleDao
 
